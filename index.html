@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>프로그램 신청자 명단</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  iframe {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    border: none;
+    display: block;
+  }
+</style>
 </head>
-<body style="margin:0;">
-  <iframe src="https://script.google.com/macros/s/AKfycbxbG64hBfHG0fkLZ8CgjIA4AdktRj0h0uQzebSa5FhsQglG0Vm2ue_rIODEzhnSa3uUgQ/exec"
-          style="width:100%; height:100vh; border:none;"></iframe>
+<body>
+  <iframe id="appFrame" src="https://script.google.com/macros/s/AKfycbxbG64hBfHG0fkLZ8CgjIA4AdktRj0h0uQzebSa5FhsQglG0Vm2ue_rIODEzhnSa3uUgQ/exec" allow="clipboard-write"></iframe>
+  <script>
+    // 이 페이지 주소에 붙은 쿼리스트링을 그대로 iframe 안쪽에도 전달
+    var params = window.location.search;
+    if (params) {
+      var frame = document.getElementById('appFrame');
+      frame.src = frame.src + (frame.src.indexOf('?') === -1 ? params : '&' + params.slice(1));
+    }
+  </script>
 </body>
 </html>
